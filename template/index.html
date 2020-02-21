@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="fullwidth-block area-padding-bottom">
+    <div class="container-fluid">
+        <div class="row">
+            {% for a in styleone %}
+            <div class="col-md-4 col-lg-4 col-xl-4">
+                <div class="single-blog">
+                    <div class="thumb">
+                        <img class="img-fluid" src="{{ a.image.url }}" alt="">
+                    </div>
+                    <div class="short_details">
+                        <div class="meta-top d-flex">
+                            <a href="#">{{ a.category }}</a>
+                        </div>
+                        <a class="d-block" href="{% url 'details' a.id %}">
+                            <h4>{{ a.title }}</h4>
+                        </a>
+                        <div class="meta-bottom d-flex" >
+                            <a href="#">{{a.timelapse }} </a>
+                            <a class="dark_font" href="#">{{ a.user_id }}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock %}

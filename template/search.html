@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<!--================Home Banner Area =================-->
+    <section class="banner_area">
+      <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+          <div
+            class="banner_content d-md-flex justify-content-between align-items-center">
+            <div class="mb-3 mb-md-0">
+              <h2>Blog</h2>
+            </div>
+            <div class="page_link">
+              <a href="index.html">Home</a>
+              <a href="contact.html">Blog</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================End Home Banner Area =================-->
+
+
+  <!--================Blog Area =================-->
+  <section class="blog_area area-padding">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-8 mb-5 mb-lg-0">
+                  <div class="blog_left_sidebar">
+                  {% if styleone %}
+                      {% for b in styleone %}
+                      <article class="blog_item">
+                        <div class="blog_item_img">
+                          <img class="card-img rounded-0" src="{{ b.image.url }}" alt="">
+                          <a href="#" class="blog_item_date">
+                            <h3>{{ b.timestamp|date:'d' }}</h3>
+                            <p>{{ b.timestamp|date:'F' }}</p>
+                          </a>
+                        </div>
+                        
+                        <div class="blog_details">
+                            <a class="d-inline-block" href="{% url 'details' b.id %}">
+                                <h2>{{ b.title }}</h2>
+                            </a>
+                            <p>{{ b.blog }}</p>
+                            <ul class="blog-info-link">
+                              <li><a href="#"><i class="far fa-user"></i> {{ b.category }}</a></li>
+                               <li><a href="#"><i class="ti-heart"></i> {{ b.total_likes }} Like{{ b.total_likes|pluralize }}</a></li>
+                              <li><a href="#"><i class="ti-comment"></i> {{ b.comment.count }} Comment{{ b.comment.count|pluralize }}</a></li>
+                            </ul>
+                        </div>
+                      </article>
+                      {% endfor %}
+                  {% else %}
+                      <h4 style="font-size: 70px;position: relative;padding-left: 20px;">Sorry no match found...</h4>
+                  {% endif %}
+
+                      <nav class="blog-pagination justify-content-center d-flex">
+                          <ul class="pagination">
+                              <li class="page-item">
+                                  <a href="#" class="page-link" aria-label="Previous">
+                                      <i class="ti-angle-left"></i>
+                                  </a>
+                              </li>
+                              <li class="page-item">
+                                  <a href="#" class="page-link">1</a>
+                              </li>
+                              <li class="page-item active">
+                                  <a href="#" class="page-link">2</a>
+                              </li>
+                              <li class="page-item">
+                                  <a href="#" class="page-link" aria-label="Next">
+                                      <i class="ti-angle-right"></i>
+                                  </a>
+                              </li>
+                          </ul>
+                      </nav>
+                  </div>
+              </div>
+              <div class="col-lg-4">
+                  <div class="blog_right_sidebar">
+                      <aside class="single_sidebar_widget post_category_widget">
+                        <h4 class="widget_title">Category{{ username }}</h4>
+                        <ul class="list cat-list">
+                            {% for b in styleone %}
+                            <li>
+                                <a href="#" class="d-flex">
+                                    <p>{{ b.category }}</p>
+                                    <p>{{ 37 }}</p>
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                      </aside>
+
+                      <aside class="single_sidebar_widget popular_post_widget">
+                          <h3 class="widget_title">Recent Post</h3>
+                          {% for b in styleone %}
+                          <div class="media post_item">
+                              <img src="{{ b.image.url }}" alt="post">
+                              <div class="media-body">
+                                  <a href="single-blog.html">
+                                      <h3 style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;width:200px">{{ b.title }}</h3>
+                                  </a>
+                                  <p>{{ b.timestamp }}</p>
+                              </div>
+                          </div>
+                          {% endfor %}
+                      </aside>
+                      <aside class="single_sidebar_widget tag_cloud_widget">
+                          <h4 class="widget_title">Tag Clouds</h4>
+                          <ul class="list">
+                              <li>
+                                  <a href="#">project</a>
+                              </li>
+                              <li>
+                                  <a href="#">love</a>
+                              </li>
+                              <li>
+                                  <a href="#">technology</a>
+                              </li>
+                              <li>
+                                  <a href="#">travel</a>
+                              </li>
+                              <li>
+                                  <a href="#">restaurant</a>
+                              </li>
+                              <li>
+                                  <a href="#">life style</a>
+                              </li>
+                              <li>
+                                  <a href="#">design</a>
+                              </li>
+                              <li>
+                                  <a href="#">illustration</a>
+                              </li>
+                          </ul>
+                      </aside>
+
+
+                      <aside class="single_sidebar_widget instagram_feeds">
+                        <h4 class="widget_title">Instagram Feeds</h4>
+                        <ul class="instagram_row flex-wrap">
+                            <li>
+                                <a href="#">
+                                  <img class="img-fluid" src="img/instagram/widget-i1.png" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                  <img class="img-fluid" src="img/instagram/widget-i2.png" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                  <img class="img-fluid" src="img/instagram/widget-i3.png" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                  <img class="img-fluid" src="img/instagram/widget-i4.png" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                  <img class="img-fluid" src="img/instagram/widget-i5.png" alt="">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                  <img class="img-fluid" src="img/instagram/widget-i6.png" alt="">
+                                </a>
+                            </li>
+                        </ul>
+                      </aside>
+
+
+                      <aside class="single_sidebar_widget newsletter_widget">
+                        <h4 class="widget_title">Newsletter</h4>
+
+                        <form action="#">
+                          <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Enter email" required>
+                          </div>
+                          <button class="button rounded-0 primary-bg text-white w-100" type="submit">Subscribe</button>
+                        </form>
+                      </aside>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!--================Blog Area =================-->
+
+{% endblock %}

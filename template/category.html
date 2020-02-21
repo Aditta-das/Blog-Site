@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="banner_area">
+      <div class="banner_inner d-flex align-items-center">
+        <div class="container">
+          <div
+            class="banner_content d-md-flex justify-content-between align-items-center">
+            <div class="mb-3 mb-md-0">
+              <h2>Category</h2>
+            </div>
+            <div class="page_link">
+              <a href="index.html">Home</a>
+              <a href="contact.html">Category</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--================End Home Banner Area =================-->
+
+    <!--================Category  Area Start =================-->
+
+    <section class="category-page area-padding">
+        <div class="container">
+            <div class="row">
+                {% for b in styleone %}
+                <div class="col-md-6 col-lg-4">
+                    <div class="single-category">
+                        <div class="thumb">
+                            <img class="img-fluid" src="{{ b.image.url }}" alt="">
+                        </div>
+                        <div class="short_details">
+                            <div class="meta-top d-flex">
+                                <a href="#">() </a>/
+                                <a href="#">{{ b.category }} </a>/
+                                <a href="#"> {{ b.timestamp }}</a>
+                            </div>
+                            <a class="d-block" href="{% url 'details' b.id %}">
+                                <h4>{{ b.title }}</h4>
+                            </a>
+                            <div class="meta-bottom d-flex">
+                                <a href="#"><i class="ti-comment"></i>{{ b.comment.count }} Comment{{ b.comment.count|pluralize }}</a>
+                                <a href="#"><i class="ti-heart"></i> {{ b.total_likes }} Like{{ b.total_likes|pluralize }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <!---<div class="col-12 text-center">
+                    <a href="" class="main_btn">Load More <span class="ti-angle-double-right"></span></a>
+                </div>--->
+
+                <nav aria-label="Page navigation">
+                    {% if styleone.has_other_pages %}
+                        <ul class="pagination">
+                            {% if styleone.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{styleone.previous_page_number}}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link">&laquo;</a>
+                            </li>
+                            {% endif %}
+                            {% for i in styleone.paginator.page_range %}
+                                {% if styleone.number == i %}
+                                   <li class="page-item active">
+                                       <a class="page-link">{{i}}</a>
+                                   </li>
+                                {% else %}
+                                    <li class="page-item">
+                                        <a href="?page={{i}}" class="page-link">{{i}}</a>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+
+                            {% if styleone.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{styleone.next_page_number}}" aria-label="Previous">
+                                    <span aria-hidden="true">&raquo;</span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <a class="page-link">&raquo;</a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+                </nav>
+
+
+
+            </div>
+        </div>
+    </section>
+    <!--================Category  Area End =================-->
+{% endblock %}
